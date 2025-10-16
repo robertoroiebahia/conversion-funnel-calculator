@@ -31,12 +31,37 @@ st.markdown("""
         margin-bottom: 1rem !important;
     }
     
+    h3 {
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
     .stNumberInput input, .stTextInput input {
         font-size: 0.9rem !important;
     }
     
     [data-testid="stMetricValue"] {
         font-size: 1.5rem !important;
+    }
+    
+    .methodology {
+        background: #f8fafc;
+        padding: 1.5rem;
+        border-radius: 8px;
+        border-left: 4px solid #3b82f6;
+        margin: 1rem 0;
+    }
+    
+    .formula {
+        background: white;
+        padding: 1rem;
+        border-radius: 6px;
+        border: 1px solid #e2e8f0;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9rem;
+        margin: 0.5rem 0;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -174,4 +199,211 @@ st.caption(f"A {improvement}% improvement at {stages[stage_idx]['name']} → {st
 
 st.divider()
 
-st.caption("Built by [Roberto Bahia](https://linkedin.com/in/roberto-bahia)")
+# ========== METHODOLOGY SECTION ==========
+
+with st.expander("📖 How This Works & Why You Can Trust It"):
+    
+    st.markdown("""
+    ## Understanding the Calculations
+    
+    This calculator uses straightforward revenue projection formulas based on your actual funnel data. 
+    Here's exactly what's happening behind the scenes:
+    """)
+    
+    st.markdown("### 1. Drop-off Rate")
+    st.markdown("""
+    <div class='methodology'>
+    <strong>What it measures:</strong> The percentage of users who leave at each funnel stage.
+    
+    <div class='formula'>
+    Drop-off Rate = (Users at Stage N - Users at Stage N+1) / Users at Stage N × 100
+    </div>
+    
+    <strong>Example:</strong> If 100,000 users land on your site and 75,000 view a product page:
+    <ul>
+    <li>Drop-off = 100,000 - 75,000 = 25,000 users</li>
+    <li>Drop-off Rate = 25,000 / 100,000 × 100 = 25%</li>
+    </ul>
+    
+    <strong>Why it matters:</strong> High drop-off rates (>50%) indicate major friction points that need attention.
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("### 2. Revenue Lost")
+    st.markdown("""
+    <div class='methodology'>
+    <strong>What it measures:</strong> Potential revenue you're missing from users who drop off.
+    
+    <div class='formula'>
+    Revenue Lost = Drop-off Users × Overall Conversion Rate × AOV
+    </div>
+    
+    <strong>Example:</strong> Using the 25,000 drop-offs from above:
+    <ul>
+    <li>Overall conversion rate = 2.3% (2,300 purchases / 100,000 visitors)</li>
+    <li>AOV = $95</li>
+    <li>Lost Revenue = 25,000 × 0.023 × $95 = $54,625</li>
+    </ul>
+    
+    <strong>The logic:</strong> We assume drop-offs would convert at the same rate as users who stayed in the funnel. 
+    This is conservative—many drop-offs were likely less qualified—but gives you a realistic revenue opportunity estimate.
+    
+    <strong>Why it matters:</strong> Translates user behavior into dollars, making it easier to prioritize fixes.
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("### 3. What-If Scenarios")
+    st.markdown("""
+    <div class='methodology'>
+    <strong>What it measures:</strong> Revenue impact if you improve a specific stage's conversion rate.
+    
+    <div class='formula'>
+    Additional Revenue = Stage Users × Improvement % × Overall CR × AOV
+    </div>
+    
+    <strong>Example:</strong> Improving "Product Page → Add to Cart" by 10%:
+    <ul>
+    <li>75,000 users at Product Page stage</li>
+    <li>10% improvement = 7,500 more users advancing</li>
+    <li>7,500 × 0.023 (overall CR) × $95 (AOV) = $16,387/month</li>
+    <li>Annual impact = $16,387 × 12 = $196,650</li>
+    </ul>
+    
+    <strong>Why it matters:</strong> Helps you model ROI before investing in optimizations. A 10% improvement might require 
+    testing budget, dev resources, or agency help—this shows if the juice is worth the squeeze.
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    st.markdown("## Why You Can Trust This")
+    
+    st.markdown("""
+    ### Proven Methodology
+    
+    These calculations use standard e-commerce funnel analysis methods employed by:
+    - **Growth teams at scale-ups** (Shopify merchants, DTC brands)
+    - **CRO agencies** (ConversionXL, Speero, CXL Institute)
+    - **Product analytics platforms** (Amplitude, Mixpanel, Google Analytics)
+    
+    This isn't proprietary math—it's how conversion optimization has been done for 20+ years.
+    """)
+    
+    st.markdown("""
+    ### Conservative Assumptions
+    
+    The calculator makes conservative estimates:
+    
+    1. **Drop-offs convert at overall rate** — In reality, some drop-offs were never going to buy, 
+    so actual revenue loss might be lower. But this gives you the "best case" opportunity.
+    
+    2. **Linear improvements** — A 10% improvement doesn't account for diminishing returns or 
+    compounding effects across the funnel. Real results may vary.
+    
+    3. **Monthly projections** — We assume consistent traffic month-over-month. Seasonal businesses 
+    should adjust expectations accordingly.
+    """)
+    
+    st.markdown("""
+    ### What This Tells You
+    
+    **This calculator is for prioritization, not prediction.**
+    
+    ✅ **Use it to:**
+    - Identify which funnel stages have the biggest revenue opportunity
+    - Estimate the value of fixing specific friction points
+    - Build business cases for CRO investments
+    - Compare optimization opportunities across your funnel
+    
+    ❌ **Don't use it to:**
+    - Guarantee specific revenue outcomes (testing is required)
+    - Replace actual A/B test analysis
+    - Make exact financial projections for stakeholders
+    """)
+    
+    st.markdown("---")
+    
+    st.markdown("## Example Use Case")
+    
+    st.markdown("""
+    **Scenario:** E-commerce jewelry brand with $95 AOV
+    
+    **Funnel data reveals:**
+    - Homepage → PDP has 25% drop-off ($54K lost revenue)
+    - **PDP → Add to Cart has 89% drop-off ($6.3M lost revenue)** 🔴
+    - Cart → Checkout has 50% drop-off ($380K lost revenue)
+    
+    **Insight:** The Product Page is the massive leak. Even though homepage and checkout need work, 
+    fixing PDP → ATC has 10x the revenue impact.
+    
+    **What-if modeling shows:** A 10% improvement in ATC rate would generate +$34,675/month (+$416K annually).
+    
+    **Action taken:** Team prioritizes:
+    1. Trust signals on PDPs (reviews, guarantees, social proof)
+    2. Pricing clarity (no hidden fees)
+    3. Better product photography
+    4. Clearer shipping info
+    
+    **Result:** After 3 months of testing, ATC rate improved 8.5%, generating +$29,500/month in additional revenue.
+    
+    This calculator helped them identify the right problem to solve.
+    """)
+    
+    st.markdown("---")
+    
+    st.markdown("## Limitations & Caveats")
+    
+    st.markdown("""
+    **This calculator cannot:**
+    
+    - **Account for traffic quality differences** — If 50% of your traffic is bots or irrelevant visitors, 
+    the revenue loss estimates will be inflated.
+    
+    - **Model complex user journeys** — Assumes a linear funnel. Real users bounce between stages, 
+    return days later, or use multiple devices.
+    
+    - **Predict test outcomes** — Just because a stage has high revenue loss doesn't mean it's easy to fix. 
+    Some friction is intentional (price filtering) or hard to address (product-market fit).
+    
+    - **Replace proper analytics** — This is a directional tool. For detailed analysis, use your 
+    analytics platform's funnel reports with segmentation by source, device, cohort, etc.
+    
+    **Best practice:** Use this calculator for initial prioritization, then validate opportunities with 
+    qualitative research (session recordings, user interviews) before committing to expensive optimizations.
+    """)
+    
+    st.markdown("---")
+    
+    st.markdown("## Questions?")
+    
+    st.markdown("""
+    **"Why do you calculate revenue lost using overall conversion rate instead of stage-specific rates?"**
+    
+    Because we're estimating opportunity, not certainty. Using the overall conversion rate (final purchases / 
+    total visitors) is conservative and accounts for the fact that not everyone who advances will ultimately buy. 
+    Stage-specific rates would overstate the opportunity.
+    
+    ---
+    
+    **"Shouldn't improvements compound through the funnel?"**
+    
+    Yes! In reality, improving an early stage means more users flow through later stages, creating a multiplier effect. 
+    This calculator shows the direct impact of one stage improvement in isolation. The actual business impact could be higher.
+    
+    ---
+    
+    **"Can I use this for B2B or lead gen funnels?"**
+    
+    Yes! Just replace AOV with your average customer lifetime value (LTV) or average deal size. The math works the same way.
+    
+    ---
+    
+    **"How often should I recalculate this?"**
+    
+    Monthly at minimum, or whenever you ship major changes. Funnel performance shifts with seasonality, product 
+    mix, traffic sources, and site updates. Tracking changes over time helps you catch issues early.
+    """)
+
+st.divider()
+
+st.caption("Built by [Roberto Bahia](https://linkedin.com/in/roberto-bahia) | [GitHub](https://github.com/robertoroiebahia)")
