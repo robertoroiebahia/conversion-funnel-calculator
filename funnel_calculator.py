@@ -282,9 +282,9 @@ with st.expander("📖 How This Works & Why You Can Trust It"):
     ### Proven Methodology
     
     These calculations use standard e-commerce funnel analysis methods employed by:
-    - **Growth teams at scale-ups** (Shopify merchants, DTC brands)
-    - **CRO agencies** (ConversionXL, Speero, CXL Institute)
-    - **Product analytics platforms** (Amplitude, Mixpanel, Google Analytics)
+    - **Growth teams at scale-ups** (e-commerce merchants, DTC brands)
+    - **CRO agencies and practitioners** (optimization consultants and specialists)
+    - **Product analytics platforms** (enterprise analytics and experimentation tools)
     
     This isn't proprietary math—it's how conversion optimization has been done for 20+ years.
     """)
