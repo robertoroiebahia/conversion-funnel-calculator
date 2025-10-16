@@ -2,8 +2,7 @@
 
 Calculate exactly where revenue is leaking in your conversion funnel and what each improvement is worth. Built for CRO professionals, growth teams, and e-commerce businesses.
 
-**[🚀 Live Demo](#)** *(Coming soon - will deploy to Streamlit Cloud)*
-
+**[🚀 Live Demo](https://conversion-funnel-calculator.streamlit.app/)** 
 [![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Streamlit](https://img.shields.io/badge/streamlit-1.18+-FF4B4B.svg)](https://streamlit.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
